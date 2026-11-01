@@ -1,0 +1,47 @@
+# ===== Vivado 生成物（可由 scripts/create_project.tcl 重建，不入库）=====
+*.runs/
+*.cache/
+*.hw/
+*.sim/
+*.gen/
+*.ip_user_files/
+*.Xil/
+.Xil/
+build/*/
+build/*.log
+build/*.jou
+build/*.dcp
+
+# ===== 比特流 / 中间文件 =====
+*.bit
+*.dcp
+*.ltx
+*.wdb
+*.vcd
+*.wcfg
+
+# ===== Vivado 会话日志 =====
+vivado*.log
+vivado*.jou
+vivado*.backup.log
+vivado*.backup.jou
+build_*.log
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+
+# ===== 系统 / 编辑器 =====
+Thumbs.db
+.DS_Store
+~$*
+.vscode/
+.idea/
+
+# ===== 注意 =====
+# 若需要入库 ROM 初始化文件（*.mem / *.bin / *.coe），在文件末尾加白名单，例如：
+#   !data/**/*.mem
+#   !data/**/*.coe

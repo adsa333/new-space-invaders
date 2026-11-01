@@ -1,0 +1,45 @@
+* text=auto
+.* text eol=lf
+
+# --- 源码与文本 ---
+*.c text eol=lf
+*.h text eol=lf
+*.cpp text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.tcl text eol=lf
+*.v text eol=lf
+*.sv text eol=lf
+*.vhd text eol=lf
+*.xdc text eol=lf
+*.csv text eol=lf
+*.svg text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# --- Windows 脚本 ---
+# 必须保留 UTF-8 BOM，否则 Windows PowerShell 5.1 会把中文解析成乱码。
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# --- 二进制资源 ---
+*.bit binary
+*.dcp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.doc binary
+*.docx binary
+*.ppt binary
+*.pptx binary
+*.xlsx binary
+*.pdf binary
+*.wav binary
+*.mp3 binary
+*.mp4 binary
