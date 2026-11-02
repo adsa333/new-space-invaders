@@ -67,15 +67,13 @@ key3 (AB18)  同模式重开
 ├── src/hls/ src/ip/ src/ps/  按提交模板预留；本项目全部手写 RTL，无 HLS/IP/PS 内容
 ├── constraints/              引脚与时序约束 top_cam_dual.xdc（54 个 IOB）
 ├── sim/                      testbench 与回归脚本 run_sim.bat
-├── scripts/                  build.tcl 一键构建、rerun_impl.tcl 只重跑实现
-├── build/                    构建产物目录（report/ 下为六份实测报告）
+├── build/                    build.tcl 一键构建、rerun_impl.tcl 只重跑实现
+│                             + 构建产物（report/ 下为六份实测报告）
 ├── board/                    烧录脚本、已验证比特流、板级说明
 ├── data/                     仿真黄金参考
-├── metrics/                  metrics.csv 指标表 + logs/ 日志 + evidence/ 板级证据 + scripts/
+├── metrics/                  metrics.csv 指标表 + logs/ 日志 + evidence/ 板级证据
 ├── skill/                    技能包 S1~S10（全部来自真实踩坑）
-├── report/                   设计报告 + 大模型协作记录
-├── web-game/                 按提交模板预留；本项目为纯 FPGA 实现，无网页版本
-└── requirements.txt          Python 依赖（算法对照脚本用，非构建必需）
+└── report/                   设计报告 + 大模型协作记录
 ```
 
 ## 快速开始
@@ -83,12 +81,12 @@ key3 (AB18)  同模式重开
 ### 构建（一条命令，约 12 分钟）
 
 ```bash
-vivado -mode batch -source scripts/build.tcl
+vivado -mode batch -source build/build.tcl
 # 产出 → build/dual/dual.runs/impl_1/top_cam_dual.bit
 #        build/report/{10_util,11_util_hier,20_timing,30_drc,40_methodology,50_power}.rpt
 ```
 
-`PROJ` 环境变量可换工程目录名（默认 `dual`）。只改约束、想重跑实现用 `scripts/rerun_impl.tcl`。
+`PROJ` 环境变量可换工程目录名（默认 `dual`）。只改约束、想重跑实现用 `build/rerun_impl.tcl`。
 
 ### 上板
 

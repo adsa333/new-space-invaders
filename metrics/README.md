@@ -24,7 +24,7 @@
 | 文件 | 内容 |
 |---|---|
 | `sim_log.txt` | `sim/run_sim.bat` 的完整输出：`tb_dir_judge_acc` 8 项检查 + `tb_game_core` 14 条断言 |
-| `build.log` | 一次完整构建的 Vivado 日志（`scripts/build.tcl`） |
+| `build.log` | 一次完整构建的 Vivado 日志（`build/build.tcl`） |
 
 ## 3. `evidence/`（板级证据）
 
@@ -40,8 +40,8 @@
 | 标定截图 | 按住 key1 时标定框由黄转绿的一帧 | 自适应标定 |
 | （可选）示波器波形 | `cam1_pclk` 24 MHz、`hdmi_out_clk` 25 MHz | 时钟域 |
 
-## 4. `scripts/`
+## 4. 指标出处
 
-指标由 `scripts/build.tcl` 在构建末尾自动汇总到 `build/report/00_metrics.txt`；
-`metrics/scripts/` 预留给"从报告生成本表"的脚本，目前不需要——`metrics.csv` 为手工誊写，
+指标由 `build/build.tcl` 在构建末尾自动汇总到 `build/report/00_metrics.txt`；
+原预留给"从报告生成本表"的脚本，目前不需要——`metrics.csv` 为手工誊写，
 每一行都能在 `build/report/` 里找到出处，便于评审核对。

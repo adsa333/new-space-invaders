@@ -13,8 +13,10 @@ if exist _work rmdir /s /q _work
 mkdir _work
 cd _work
 
+REM _work is sim/_work, so the repo root is two levels up
 set SRC=
-for %%f in (..\src\rtl\*.sv) do set SRC=!SRC! "%%f"
+for %%f in (..\..\src\rtl\*.sv) do set SRC=!SRC! "%%f"
+for %%f in (..\..\src\rtl\*.v) do set SRC=!SRC! "%%f"
 set SRC=!SRC! "..\tb_dir_judge_acc.sv" "..\tb_game_core.sv"
 
 echo [1/4] compile RTL
@@ -49,8 +51,8 @@ call xsim sim_dja -R >> ..\..\metrics\logs\sim_log.txt 2>&1
 >> ..\..\metrics\logs\sim_log.txt echo ==== tb_game_core (14 assertions) ====
 call xsim sim_game -R >> ..\..\metrics\logs\sim_log.txt 2>&1
 
+type ..\..\metrics\logs\sim_log.txt
 cd ..
 rmdir /s /q _work
-type ..\..\metrics\logs\sim_log.txt
 echo.
 echo ==== DONE: metrics/logs/sim_log.txt ====

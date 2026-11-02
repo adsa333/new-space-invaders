@@ -4,7 +4,7 @@
   **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
   **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
   **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
-  **** Start of session at: Mon Nov  2 20:59:17 2026
+  **** Start of session at: Mon Nov  2 22:03:35 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -23,7 +23,7 @@ CHECK8 慢速 +3px/帧x60 右移脉冲: PASS (触发帧数=32)
 ==== TB RESULT: 0 ERRORS ====
 $finish called at time : 21300 ns : File "D:/fpga/new-space-invaders/sim/tb_dir_judge_acc.sv" Line 105
 exit
-INFO: [Common 17-206] Exiting xsim at Mon Nov  2 20:59:19 2026...
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 22:03:37 2026...
 
 ==== tb_game_core (14 assertions) ====
 
@@ -31,7 +31,7 @@ INFO: [Common 17-206] Exiting xsim at Mon Nov  2 20:59:19 2026...
   **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
   **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
   **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
-  **** Start of session at: Mon Nov  2 20:59:19 2026
+  **** Start of session at: Mon Nov  2 22:03:37 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -57,4 +57,4 @@ run -all
 ==== TB_GAME ALL PASS ====
 $finish called at time : 48700 ns : File "D:/fpga/new-space-invaders/sim/tb_game_core.sv" Line 79
 exit
-INFO: [Common 17-206] Exiting xsim at Mon Nov  2 20:59:21 2026...
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 22:03:39 2026...

@@ -1,9 +1,9 @@
 # =============================================================================
-#  scripts/build.tcl —— 双模式合并版（光流 LK + 肤色质心，key0 切换）
+#  build/build.tcl —— 双模式合并版（光流 LK + 肤色质心，key0 切换）
 #  器件: xc7a100tfgg484-2    顶层: top_cam_dual
 #
 #  用法（仓库根目录）:
-#      vivado -mode batch -source scripts/build.tcl
+#      vivado -mode batch -source build/build.tcl
 #      （环境变量 PROJ 可换工程目录名，默认 dual）
 #
 #  产出:

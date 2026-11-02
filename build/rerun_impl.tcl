@@ -1,7 +1,7 @@
 # =============================================================================
-#  scripts/rerun_impl.tcl —— 只重跑实现（改约束后验证时序，不重新综合）
-#  用法: vivado -mode batch -source scripts/rerun_impl.tcl
-#  前提: 已跑过 scripts/build.tcl（工程目录 build/$PROJ 存在）
+#  build/rerun_impl.tcl —— 只重跑实现（改约束后验证时序，不重新综合）
+#  用法: vivado -mode batch -source build/rerun_impl.tcl
+#  前提: 已跑过 build/build.tcl（工程目录 build/$PROJ 存在）
 # =============================================================================
 
 set PROJ dual
@@ -13,7 +13,7 @@ set PROJDIR  [file join $ROOT build $PROJ]
 set RPT      [file join $ROOT build report]
 set XPR      [file join $PROJDIR ${PROJ}.xpr]
 
-if {![file exists $XPR]} { error "工程不存在: $XPR（先跑 scripts/build.tcl）" }
+if {![file exists $XPR]} { error "工程不存在: $XPR（先跑 build/build.tcl）" }
 open_project $XPR
 
 reset_run impl_1
