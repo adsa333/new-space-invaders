@@ -1,0 +1,60 @@
+==== tb_dir_judge_acc (8 checks) ====
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Mon Nov  2 20:59:17 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sim_dja/xsim_script.tcl
+# xsim {sim_dja} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+CHECK1 规律抖动 ±2 x80: PASS
+CHECK2 随机抖动±3 x300: PASS
+CHECK3 慢速 -3px/帧x60: PASS (触发帧数=16, 最长连续=4)
+CHECK4 中速 -5px/帧: PASS
+CHECK5 快速 -15px/帧: PASS
+CHECK6 快速反向切换: PASS
+CHECK7 无手回 IDLE: PASS
+CHECK8 慢速 +3px/帧x60 右移脉冲: PASS (触发帧数=32)
+==== TB RESULT: 0 ERRORS ====
+$finish called at time : 21300 ns : File "D:/fpga/new-space-invaders/sim/tb_dir_judge_acc.sv" Line 105
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 20:59:19 2026...
+
+==== tb_game_core (14 assertions) ====
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Mon Nov  2 20:59:19 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sim_game/xsim_script.tcl
+# xsim {sim_game} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+[PASS] reset -> IDLE
+[PASS] reset -> lives=6
+[PASS] reset -> 55 enemies
+[PASS] reset -> bunkers full
+[PASS] reset -> stage=1
+[PASS] start -> PLAY
+[PASS] in play -> win=0
+[PASS] auto-fire -> player bullets
+[PASS] left -> player moved left
+[PASS] right -> player moved right
+[PASS] hit enemy -> score up
+[PASS] enemy fired bullets
+[PASS] ufo spawned by LFSR
+[PASS] enemy bullet hit -> lives down
+
+==== TB_GAME ALL PASS ====
+$finish called at time : 48700 ns : File "D:/fpga/new-space-invaders/sim/tb_game_core.sv" Line 79
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 20:59:21 2026...

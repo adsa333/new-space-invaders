@@ -1,0 +1,48 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Nov  1 19:17:00 2026
+| Host         : strange running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -hierarchical_depth 3 -file D:/fpga/fpga_space_invaders/is-it-possible-to-ai-it-perfect/cam_dual/build/report/11_util_hier.rpt
+| Design       : top_cam_dual
+| Device       : xc7a100tfgg484-2
+| Speed File   : -2
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+|       Instance       |     Module     | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+| top_cam_dual         |          (top) |      17802 |      17562 |       0 |  240 | 7251 |     51 |      1 |         12 |
+|   (top_cam_dual)     |          (top) |         12 |         12 |       0 |    0 | 1573 |      0 |      0 |          0 |
+|   u_buf              |  bin_frame_buf |         55 |         55 |       0 |    0 |   25 |      3 |      0 |          0 |
+|   u_cam              |     ov7725_top |        350 |        350 |       0 |    0 |   80 |      0 |      0 |          0 |
+|     ov7725_cfg_inst  |     ov7725_cfg |         56 |         56 |       0 |    0 |   19 |      0 |      0 |          0 |
+|     ov7725_data_inst |    ov7725_data |        259 |        259 |       0 |    0 |   34 |      0 |      0 |          0 |
+|   u_cent             |  centroid_calc |        376 |        376 |       0 |    0 |  318 |      0 |      0 |          0 |
+|   u_flow             |        lk_flow |       2597 |       2357 |       0 |  240 | 3228 |     48 |      0 |         12 |
+|     (u_flow)         |        lk_flow |       1895 |       1895 |       0 |    0 | 2664 |      0 |      0 |         12 |
+|     lb_cur1          |   flow_linebuf |         84 |          4 |       0 |   80 |    8 |      0 |      0 |          0 |
+|     lb_cur2          | flow_linebuf_2 |         80 |          0 |       0 |   80 |    0 |      0 |      0 |          0 |
+|     lb_prev1         | flow_linebuf_3 |         81 |          1 |       0 |   80 |  320 |      0 |      0 |          0 |
+|     u_div            |       div_pipe |        368 |        368 |       0 |    0 |  219 |      0 |      0 |          0 |
+|     u_fbuf           |  gray_framebuf |         70 |         70 |       0 |    0 |    7 |     48 |      0 |          0 |
+|   u_fsm              |       flow_fsm |         56 |         56 |       0 |    0 |   27 |      0 |      1 |          0 |
+|     (u_fsm)          |       flow_fsm |         55 |         55 |       0 |    0 |   27 |      0 |      0 |          0 |
+|   u_game             |      game_core |      11054 |      11054 |       0 |    0 | 1788 |      0 |      0 |          0 |
+|   u_hdmi_i2c         |       hdmi_i2c |         65 |         65 |       0 |    0 |   46 |      0 |      0 |          0 |
+|   u_vga              |     vga_timing |       2920 |       2920 |       0 |    0 |   45 |      0 |      0 |          0 |
+|   u_ycc              |      rgb2ycrcb |        161 |        161 |       0 |    0 |    0 |      0 |      0 |          0 |
++----------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

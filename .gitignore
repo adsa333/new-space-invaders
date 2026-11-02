@@ -1,0 +1,20 @@
+# ---- Vivado 构建产物 / 临时文件 ----
+build/dual/
+build/*.log
+build/*.jou
+*.jou
+*.log
+*.str
+*.wdb
+*.pb
+.Xil/
+*/.Xil/
+xsim.dir/
+sim/_work/
+
+# ---- 系统 ----
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 注：build/report/*.rpt 与 board/top_cam_dual.bit 是交付物，需要跟踪，勿忽略
