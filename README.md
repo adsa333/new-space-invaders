@@ -113,7 +113,7 @@ xsim sim_dja -R
 
 | 文档 | 内容 |
 |---|---|
-| [report/report.md](report/report.md) | 设计报告正文 |
+| [report/报告最新.pdf](report/报告最新.pdf) | 设计报告正文（PDF） |
 | [report/ai_collaboration.md](report/ai_collaboration.md) | 大模型协作记录（13 条，含纠错轨迹） |
 | [data/README.md](data/README.md) | 仿真黄金参考、实现实测指标、版本对比 |
 | [board/README.md](board/README.md) | 板级说明：引脚、烧录、上板验证 |
