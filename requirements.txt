@@ -1,0 +1,3 @@
+# Python 依赖（算法验证与脚本）
+numpy>=1.24
+opencv-python>=4.8
