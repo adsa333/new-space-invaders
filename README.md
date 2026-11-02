@@ -62,15 +62,20 @@ key3 (AB18)  同模式重开
 
 ```
 ├── README.md                 本文件：项目简介 + 复现步骤
-├── src/rtl/*.sv              16 个 SystemVerilog：游戏 / 光流 / 质心 / 渲染 / 顶层
-├── src/board_cam/*.v         OV7725 驱动（SCCB 配置 + DVP 采集）
-├── src/board_hdmi/*.v        HDMI 发送芯片 I2C 配置
-├── sim/                      testbench 与回归脚本（run_sim.bat、sim_log.txt）
-├── build/                    build.tcl 一键构建 + report/ 六份实测报告
-├── board/                    引脚约束、烧录脚本、已验证比特流
-├── data/                     仿真黄金参考与实测指标汇总
+├── src/rtl/                  23 个源文件：16 个 SystemVerilog（游戏/光流/质心/渲染/顶层）
+│                             + 7 个 Verilog-2001 板级驱动（OV7725 采集与配置、SiI9134 配置）
+├── src/hls/ src/ip/ src/ps/  按提交模板预留；本项目全部手写 RTL，无 HLS/IP/PS 内容
+├── constraints/              引脚与时序约束 top_cam_dual.xdc（54 个 IOB）
+├── sim/                      testbench 与回归脚本 run_sim.bat
+├── scripts/                  build.tcl 一键构建、rerun_impl.tcl 只重跑实现
+├── build/                    构建产物目录（report/ 下为六份实测报告）
+├── board/                    烧录脚本、已验证比特流、板级说明
+├── data/                     仿真黄金参考
+├── metrics/                  metrics.csv 指标表 + logs/ 日志 + evidence/ 板级证据 + scripts/
 ├── skill/                    技能包 S1~S10（全部来自真实踩坑）
-└── report/                   设计报告 + 大模型协作记录
+├── report/                   设计报告 + 大模型协作记录
+├── web-game/                 按提交模板预留；本项目为纯 FPGA 实现，无网页版本
+└── requirements.txt          Python 依赖（算法对照脚本用，非构建必需）
 ```
 
 ## 快速开始
@@ -78,12 +83,12 @@ key3 (AB18)  同模式重开
 ### 构建（一条命令，约 12 分钟）
 
 ```bash
-vivado -mode batch -source build/build.tcl
+vivado -mode batch -source scripts/build.tcl
 # 产出 → build/dual/dual.runs/impl_1/top_cam_dual.bit
 #        build/report/{10_util,11_util_hier,20_timing,30_drc,40_methodology,50_power}.rpt
 ```
 
-`PROJ` 环境变量可换工程目录名（默认 `dual`）。只改约束、想重跑实现用 `build/rerun_impl.tcl`。
+`PROJ` 环境变量可换工程目录名（默认 `dual`）。只改约束、想重跑实现用 `scripts/rerun_impl.tcl`。
 
 ### 上板
 
@@ -104,7 +109,7 @@ xsim sim_dja -R
 ```
 
 游戏内核回归：`sim/tb_game_core.sv`（`TICK_DIV` 参数加速，14 条断言全过）。
-两条一起跑用 `sim\run_sim.bat`，结果写在 `sim/sim_log.txt`（22/22 通过）。
+两条一起跑用 `sim\run_sim.bat`，结果写在 `metrics/logs/sim_log.txt`（22/22 通过）。
 
 ## 文档索引
 
@@ -119,7 +124,7 @@ xsim sim_dja -R
 
 ## 已知限制
 
-- **质心模式的肤色阈值是按自动曝光标定的**，而 `src/board_cam/ov7725_cfg.v` 是光流版调的
+- **质心模式的肤色阈值是按自动曝光标定的**，而 `src/rtl/ov7725_cfg.v` 是光流版调的
   固定曝光。上板后若质心模式偏色或漏检，改 `src/rtl/top_cam_dual.sv` 顶部的
   `CB_LO/CB_HI/CR_LO/CR_HI/WARM_MIN` 五个 `localparam` 即可，不用动判定结构
 - 合并版 WNS（+0.520 ns）比光流单版（+3.428 ns）低，原因是 `dir_judge_acc` 在 24 MHz 域里

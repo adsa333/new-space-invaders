@@ -1,14 +1,14 @@
 # =============================================================================
-#  build/build.tcl —— 双模式合并版（光流 LK + 肤色质心，key0 切换）
+#  scripts/build.tcl —— 双模式合并版（光流 LK + 肤色质心，key0 切换）
 #  器件: xc7a100tfgg484-2    顶层: top_cam_dual
 #
 #  用法（仓库根目录）:
-#      vivado -mode batch -source build/build.tcl
+#      vivado -mode batch -source scripts/build.tcl
 #      （环境变量 PROJ 可换工程目录名，默认 dual）
 #
 #  产出:
 #      build/report/*.rpt                       资源 / 时序 / DRC / 方法论 / 功耗
-#      build/report/00_metrics.txt              关键指标汇总
+#      build/report/00_metrics.txt              关键指标汇总（另抄一份到 metrics/metrics.csv 的格式）
 #      build/dual/dual.runs/impl_1/top_cam_dual.bit
 # =============================================================================
 
@@ -20,9 +20,7 @@ if {[info exists ::env(PROJ)]} { set PROJ $::env(PROJ) }
 set SCRIPT   [file normalize [info script]]
 set ROOT     [file normalize [file join [file dirname $SCRIPT] ..]]
 set SRCDIR   [file join $ROOT src rtl]
-set CAMDIR   [file join $ROOT src board_cam]
-set HDMIDIR  [file join $ROOT src board_hdmi]
-set CONSDIR  [file join $ROOT board]
+set CONSDIR  [file join $ROOT constraints]
 set BUILDDIR [file join $ROOT build]
 set PROJDIR  [file join $BUILDDIR $PROJ]
 set RPT      [file join $BUILDDIR report]
@@ -34,10 +32,9 @@ puts "== PART: $PART   TOP: $TOP   PROJ: $PROJ"
 # ---- 1. 建工程 + 收源文件 ----
 create_project -force $PROJ $PROJDIR -part $PART
 
-set srcs [glob -nocomplain -directory $SRCDIR  -types f *.sv]
-lappend srcs {*}[glob -nocomplain -directory $CAMDIR  -types f *.v]
-lappend srcs {*}[glob -nocomplain -directory $HDMIDIR -types f *.v]
-if {[llength $srcs] == 0} { error "没有找到源文件" }
+set srcs [glob -nocomplain -directory $SRCDIR -types f *.sv]
+lappend srcs {*}[glob -nocomplain -directory $SRCDIR -types f *.v]
+if {[llength $srcs] == 0} { error "没有找到源文件: $SRCDIR" }
 add_files -fileset sources_1 $srcs
 set_property top $TOP [current_fileset]
 puts "== sources: [llength $srcs] files"

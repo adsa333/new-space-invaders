@@ -126,7 +126,7 @@ game_core #(.TICK_DIV(10)) u_dut (...);           // 仿真用 10，逻辑完全
 
 **适用场景**：需要提交"可复现构建脚本"的课程/竞赛；多人协作避免"只在我电脑上能跑"。
 
-**做法**：见 [`build/build.tcl`](../build/build.tcl)，要点：
+**做法**：见 [`scripts/build.tcl`](../scripts/build.tcl)，要点：
 1. `create_project -force` + `add_files`（含子目录）+ `set_property top`；
 2. **自动生成时钟 IP**（`create_ip clk_wiz` + `generate_target`），IP 不入库也能重建；
 3. `launch_runs synth_1` → `wait_on_run` → 检查 `PROGRESS == 100%` → `open_run` → `report_*`；
@@ -203,7 +203,7 @@ if (|acc| >= TH_ACC) { 触发方向; acc -= sign(acc)*TH_ACC; }   // 触发后�
 
 **已验证效果**：`TH_ACC=16`、`ACC_SH=3`，±3 px 抖动稳态积分约 3.5（距门限 4.6σ），
 300 帧零误触发；3 px/帧 慢速在 60 帧里触发 16 帧；5 px/帧 连续移动；
-可检测速度下限从 270 px/s 降到约 60 px/s，8 项断言全过（`sim/sim_log.txt`）。
+可检测速度下限从 270 px/s 降到约 60 px/s，8 项断言全过（`metrics/logs/sim_log.txt`）。
 
 **失效条件**：手速低于噪声水平（约 1 px/帧）时不可分辨；帧率变化需同步改 `ACC_SH`。
 

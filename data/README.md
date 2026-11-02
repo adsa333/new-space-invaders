@@ -7,7 +7,7 @@
 | 工具 | Vivado Simulator 2026.1（`sim\run_sim.bat`） |
 | 用例 1 | `tb_dir_judge_acc` — 质心模式慢速判定，**8/8 PASS，0 ERROR** |
 | 用例 2 | `tb_game_core` — 游戏内核，**14/14 断言 PASS**（TICK_DIV=10 加速） |
-| 原始日志 | [`../sim/sim_log.txt`](../sim/sim_log.txt) |
+| 原始日志 | [`../metrics/logs/sim_log.txt`](../metrics/logs/sim_log.txt) |
 
 `tb_dir_judge_acc` 覆盖的 8 项：
 
@@ -79,7 +79,7 @@ CHECK8 慢速 +3px/帧 x60        -> 右移脉冲（触发 32 帧）
 
 | 文件 | 来源 | 用途 |
 |---|---|---|
-| `sim/sim_log.txt` | xsim 批处理 | 证明功能正确（8+14 项） |
+| `metrics/logs/sim_log.txt` | xsim 批处理 | 证明功能正确（8+14 项） |
 | `build/report/10_util.rpt` | Vivado | 资源占用原始证据 |
 | `build/report/11_util_hier.rpt` | Vivado | 分层资源 |
 | `build/report/20_timing.rpt` | Vivado | 时序与时钟表 |
