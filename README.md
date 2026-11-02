@@ -17,6 +17,44 @@
 
 ---
 
+## 目录
+
+- [1. 两种模式](#1-两种模式)
+- [2. 目录结构](#2-目录结构)
+- [3. 快速开始](#3-快速开始)
+- [4. 设计要点](#4-设计要点)
+- [5. 已知限制](#5-已知限制)
+- [6. 复现提示](#6-复现提示)
+- [文件索引](#文件索引)
+- [许可证](#许可证)
+
+## 文件索引
+
+| 路径 | 内容 |
+|---|---|
+| `src/rtl/top_cam_dual.sv` | 顶层：时钟与复位、双前端例化、跨域同步、画中画合成 |
+| `src/rtl/game_core.sv` | 游戏内核：状态机、55 只外星人、4 座掩体、UFO、计分与生命 |
+| `src/rtl/lk_flow.sv`、`flow_fsm.sv` | 光流：16×16 块梯度累加与正规方程求解；漏桶积分与 2/3 投票出方向 |
+| `src/rtl/div_pipe.sv` | 54 位定点除法器（QF=16，70 拍流水），供克莱姆法则求解用 |
+| `src/rtl/gray_framebuf.sv`、`flow_linebuf.sv`、`flow_tag_ram.sv` | 光流用的灰度帧缓冲、行缓存与块标签 |
+| `src/rtl/centroid_calc.sv`、`dir_judge_acc.sv` | 质心：面积/一阶矩统计；泄漏积分器判方向（慢速可用） |
+| `src/rtl/rgb2gray.sv`、`rgb2ycrcb.sv`、`bin_frame_buf.sv` | 两套前端的像素预处理与二值图缓存 |
+| `src/rtl/sprite_render.sv`、`vga_timing.sv` | 扫描线实时渲染；640×480@60 Hz 视频时序 |
+| `src/rtl/debounce.sv` | 按键消抖（250000 拍 ≈ 5 ms） |
+| `src/board_cam/` | OV7725 采集与 SCCB 配置（69 条寄存器，RGB565） |
+| `src/board_hdmi/` | SiI9134 配置与 I2C 主机 |
+| `sim/tb_dir_judge_acc.sv` | 方向判决 8 项检查，含 ±3 px 抖动零误触发 |
+| `sim/tb_game_core.sv` | 游戏内核 14 项断言（`TICK_DIV` 快进到 60 Hz） |
+| `sim/run_sim.bat`、`sim/sim_log.txt` | 仿真回归脚本与 22/22 通过的结果记录 |
+| `build/build.tcl`、`build/rerun_impl.tcl` | 一键构建（建工程→IP→综合→实现→bit→5 份报告）；只重跑实现 |
+| `build/report/10_util.rpt` 等 6 份 | 资源、分层资源、时序、DRC、方法论、功耗实测报告 |
+| `board/top_cam_dual.xdc` | 54 个引脚约束（含两路时钟与跨域 false_path） |
+| `board/top_cam_dual.bit` | 已验证比特流，可直接烧录 |
+| `board/program.tcl`、`board/README.md` | 命令行烧录脚本与板级说明 |
+| `data/README.md` | 仿真黄金参考、实现实测指标、版本对比 |
+| `report/report.md`、`report/ai_collaboration.md` | 设计报告；大模型协作记录（含纠错轨迹） |
+| `skill/README.md` | 可复用经验包 S1~S10 |
+
 ## 1. 两种模式
 
 | 模式 | 原理 | 分辨率 | 灵敏度 | 特点 |
@@ -101,7 +139,9 @@ vivado -mode batch -source board/program.tcl
 
 ---
 
+## 许可证
+
 初版为单模式光流版（2026-10-30 提交），当前为双模式合并版。设计报告见
 [`report/report.md`](report/report.md)，指标明细见 [`data/README.md`](data/README.md)。
 
-许可证：[MIT](LICENSE)。
+本项目采用 [MIT 许可证](LICENSE)。
